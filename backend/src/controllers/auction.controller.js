@@ -31,6 +31,7 @@ export async function create(req, res, next) {
     const {
       title,
       description,
+      image_url,
       starting_price,
       min_bid_increment,
       start_time,
@@ -40,6 +41,7 @@ export async function create(req, res, next) {
     const auction = await createAuction({
       title,
       description,
+      imageUrl: image_url,
       startingPrice: starting_price,
       minimumIncrement: min_bid_increment,
       sellerId: req.user.id,

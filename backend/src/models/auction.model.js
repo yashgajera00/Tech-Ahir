@@ -3,6 +3,7 @@ import { query } from '../config/database.js';
 export async function createAuction({
   title,
   description,
+  imageUrl,
   startingPrice,
   minimumIncrement,
   sellerId,
@@ -13,6 +14,7 @@ export async function createAuction({
     `INSERT INTO auctions (
        title,
          description,
+         image_url,
          starting_price,
          current_price,
          minimum_increment,
@@ -22,8 +24,8 @@ export async function createAuction({
          status
      )
      VALUES (
-       $1, $2, $3, $3, $4, $5, $6, $7,
-         CASE WHEN $6 <= NOW() AND $7 > NOW() THEN 'active'
+       $1, $2, $3, $4, $4, $5, $6, $7, $8,
+         CASE WHEN $7 <= NOW() AND $8 > NOW() THEN 'active'
               ELSE 'scheduled'
          END
      )
@@ -31,6 +33,7 @@ export async function createAuction({
     [
       title,
       description,
+      imageUrl || null,
       startingPrice,
       minimumIncrement,
       sellerId,

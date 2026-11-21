@@ -13,6 +13,13 @@ export const createAuctionSchema = z
       .max(5000, 'Description must be 5000 characters or fewer')
       .optional()
       .default(''),
+    image_url: z
+      .string()
+      .trim()
+      .url('Image URL must be a valid URL')
+      .max(2048, 'Image URL must be 2048 characters or fewer')
+      .optional()
+      .or(z.literal('')),
     starting_price: z.coerce
       .number({ invalid_type_error: 'Starting price must be a number' })
       .nonnegative('Starting price cannot be negative'),

@@ -47,6 +47,13 @@ export default function AuctionCard({ auction }) {
       aria-label={`View ${auction.title} auction`}
     >
       <div className="auction-card-visual">
+        {auction.image_url && (
+          <img
+            className="auction-card-image"
+            src={auction.image_url}
+            alt=""
+          />
+        )}
         <div className="auction-card-brand">
           <Gavel size={20} />
         </div>

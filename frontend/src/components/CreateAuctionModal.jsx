@@ -6,6 +6,7 @@ export default function CreateAuctionModal({ onClose, onCreated }) {
   const [form, setForm] = useState({
     title: '',
     description: '',
+    image_url: '',
     starting_price: '',
     min_bid_increment: '',
     start_time: '',
@@ -65,6 +66,7 @@ export default function CreateAuctionModal({ onClose, onCreated }) {
       const auction = await createAuction({
         title: form.title,
         description: form.description,
+        image_url: form.image_url || undefined,
         starting_price: Number(form.starting_price),
         min_bid_increment: Number(form.min_bid_increment),
         start_time: start.toISOString(),
@@ -135,6 +137,18 @@ export default function CreateAuctionModal({ onClose, onCreated }) {
                 placeholder="Describe the item, condition, and included accessories"
                 maxLength={5000}
                 rows={4}
+              />
+            </label>
+
+            <label className="full-width">
+              Image URL
+              <input
+                name="image_url"
+                type="url"
+                value={form.image_url}
+                onChange={updateField}
+                placeholder="https://example.com/auction-image.jpg"
+                maxLength={2048}
               />
             </label>
 
